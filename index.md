@@ -1,5 +1,5 @@
 ---
-layout: centered
+layout: page
 title: Sergei Khorev
 ---
 
