@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sergei — Capital Markets Technologist</title>
+<meta name="description" content="Capital markets technologist and physicist: Calypso implementation, quantitative risk (VaR/xVA/CVA), and AI/quantum computing tooling.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<style>
+  :root {
+    --ink: #14171b;
+    --ink-raised: #1b2027;
+    --ink-raised-2: #20262e;
+    --paper: #e9e4d3;
+    --paper-dim: #a9a390;
+    --paper-dimmer: #6f6a5c;
+    --brass: #c9a227;
+    --brass-dim: #8a7024;
+    --teal: #5b9c99;
+    --teal-dim: #3d6b69;
+    --rule: #333b46;
+    --rule-soft: #262c34;
+    --mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+    --serif: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+    --maxw: 920px;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+  }
+
+  body {
+    margin: 0;
+    background: var(--ink);
+    color: var(--paper);
+    font-family: var(--serif);
+    font-size: 17px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: var(--brass); text-decoration: none; border-bottom: 1px solid var(--brass-dim); transition: border-color .15s, color .15s; }
+  a:hover, a:focus-visible { color: #e0c15a; border-color: #e0c15a; }
+  a:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; border-radius: 2px; }
+
+  .mono { font-family: var(--mono); }
+
+  .shell { display: grid; grid-template-columns: 220px 1fr; max-width: 1200px; margin: 0 auto; }
+  @media (max-width: 880px) { .shell { grid-template-columns: 1fr; } }
+
+  .rail {
+    position: sticky; top: 0; align-self: start; height: 100vh;
+    padding: 2.5rem 1.25rem; border-right: 1px solid var(--rule-soft);
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  @media (max-width: 880px) {
+    .rail { position: static; height: auto; border-right: none; border-bottom: 1px solid var(--rule-soft); flex-direction: row; align-items: center; padding: 1rem 1.25rem; }
+  }
+
+  .rail-top .rail-id { font-family: var(--mono); font-size: 0.72rem; color: var(--paper-dimmer); letter-spacing: 0.06em; margin-bottom: 1.75rem; }
+  @media (max-width: 880px) { .rail-top { display: none; } }
+
+  .rail-links { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.55rem; }
+  @media (max-width: 880px) {
+    .rail-links { flex-direction: row; overflow-x: auto; gap: 1rem; padding-bottom: 2px; -ms-overflow-style: none; scrollbar-width: none; }
+    .rail-links::-webkit-scrollbar { display: none; }
+  }
+  .rail-links a {
+    font-family: var(--mono); font-size: 0.78rem; color: var(--paper-dim); border-bottom: none;
+    white-space: nowrap; padding: 0.15rem 0; border-left: 2px solid transparent; padding-left: 0.6rem;
+  }
+  @media (max-width: 880px) { .rail-links a { padding-left: 0; border-left: none; } }
+  .rail-links a:hover, .rail-links a:focus-visible { color: var(--brass); border-left-color: var(--brass); outline: none; }
+
+  .rail-bottom { font-family: var(--mono); font-size: 0.7rem; color: var(--paper-dimmer); line-height: 1.6; }
+  @media (max-width: 880px) { .rail-bottom { display: none; } }
+
+  main { padding: 0 1.5rem 6rem; }
+  section { max-width: var(--maxw); margin: 0 auto; padding-top: 4.5rem; scroll-margin-top: 1.5rem; }
+
+  .eyebrow { font-family: var(--mono); font-size: 0.78rem; color: var(--teal); letter-spacing: 0.02em; margin: 0 0 0.9rem; }
+  .eyebrow::before { content: "$ "; color: var(--paper-dimmer); }
+
+  h1, h2, h3 { font-family: var(--mono); font-weight: 600; color: var(--paper); margin: 0; }
+  h2 { font-size: 1.35rem; letter-spacing: -0.01em; margin-bottom: 1.3rem; }
+  h3 { font-size: 1rem; color: var(--brass); margin-bottom: 0.4rem; }
+
+  p { margin: 0 0 1rem; color: var(--paper); }
+  .dim { color: var(--paper-dim); }
+
+  ul.dash { list-style: none; margin: 0 0 1rem; padding: 0; }
+  ul.dash li { position: relative; padding-left: 1.3rem; margin-bottom: 0.55rem; color: var(--paper); }
+  ul.dash li::before { content: "—"; position: absolute; left: 0; color: var(--brass-dim); }
+
+  .circuit { max-width: var(--maxw); margin: 4rem auto 0; padding: 0 0.5rem; }
+  .circuit svg { width: 100%; height: 28px; display: block; }
+  .circuit line { stroke: var(--rule); stroke-width: 1; }
+  .circuit rect { fill: var(--ink-raised-2); stroke: var(--rule); stroke-width: 1; }
+  .circuit .gate-brass { stroke: var(--brass-dim); }
+  .circuit .gate-teal { stroke: var(--teal-dim); }
+  .circuit text { font-family: var(--mono); font-size: 9px; fill: var(--paper-dimmer); }
+
+  .hero { padding-top: 4.5rem; padding-bottom: 1rem; }
+  .hero .term {
+    font-family: var(--mono); font-size: 0.85rem; color: var(--paper-dim);
+    background: var(--ink-raised); border: 1px solid var(--rule); border-radius: 6px;
+    padding: 0.9rem 1.1rem; margin-bottom: 2.1rem; display: inline-block;
+  }
+  .hero .term .prompt { color: var(--teal); }
+  .hero .term .cmd { color: var(--paper); }
+  .hero .term .out { color: var(--brass); }
+  .hero .term .cursor { display: inline-block; width: 7px; height: 1em; background: var(--brass); vertical-align: text-bottom; margin-left: 2px; animation: blink 1s steps(1) infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  .hero h1 { font-size: clamp(1.9rem, 4.2vw, 2.7rem); line-height: 1.15; margin-bottom: 0.6rem; }
+  .hero .role { font-family: var(--serif); font-size: 1.15rem; color: var(--paper-dim); margin-bottom: 1.6rem; max-width: 640px; }
+
+  .badges { display: flex; flex-wrap: wrap; gap: 0.55rem; margin-bottom: 2rem; }
+  .badge { font-family: var(--mono); font-size: 0.72rem; color: var(--paper-dim); border: 1px solid var(--rule); border-radius: 100px; padding: 0.32rem 0.75rem; }
+
+  .hero-links, .contact-row { display: flex; flex-wrap: wrap; gap: 1.4rem; font-family: var(--mono); font-size: 0.85rem; }
+  .hero-links a, .contact-row a { display: inline-flex; align-items: center; gap: 0.4rem; }
+  .hero-links svg, .contact-row svg { width: 15px; height: 15px; }
+
+  .block { margin-bottom: 2.2rem; }
+
+  .toolgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1.4rem; margin-bottom: 0.5rem; }
+  .toolgrid h3 { font-size: 0.78rem; color: var(--teal); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.6rem; }
+  .toolgrid .items { font-family: var(--mono); font-size: 0.85rem; color: var(--paper); line-height: 1.9; }
+
+  .projects { display: flex; flex-direction: column; gap: 1.4rem; }
+  .card { border: 1px solid var(--rule); background: var(--ink-raised); border-radius: 8px; padding: 1.5rem 1.6rem; }
+  .card-head { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-bottom: 0.5rem; }
+  .card-head h3 { margin: 0; font-size: 1.05rem; color: var(--paper); }
+  .card-tag { font-family: var(--mono); font-size: 0.68rem; color: var(--teal); border: 1px solid var(--teal-dim); border-radius: 100px; padding: 0.15rem 0.6rem; white-space: nowrap; }
+  .card-tag.private { color: var(--paper-dimmer); border-color: var(--rule); }
+  .card p { color: var(--paper-dim); margin-bottom: 0.8rem; font-size: 0.97rem; }
+  .card .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.9rem; }
+  .card .tags span { font-family: var(--mono); font-size: 0.7rem; color: var(--paper-dimmer); background: var(--ink-raised-2); border-radius: 4px; padding: 0.2rem 0.5rem; }
+  .card .card-link { font-family: var(--mono); font-size: 0.82rem; }
+
+  footer { max-width: var(--maxw); margin: 0 auto; padding: 4.5rem 1.5rem 3rem; }
+  footer .rule { height: 1px; background: var(--rule-soft); margin-bottom: 3rem; }
+  footer h2 { margin-bottom: 1rem; }
+  footer .contact-row { margin-top: 1.6rem; }
+  footer .loc { font-family: var(--mono); font-size: 0.78rem; color: var(--paper-dimmer); margin-top: 2.2rem; }
+
+  #load-error { max-width: var(--maxw); margin: 4rem auto; padding: 1.5rem; border: 1px solid var(--rule); border-radius: 8px; font-family: var(--mono); font-size: 0.85rem; color: var(--paper-dim); display: none; }
+
+  ::selection { background: var(--brass-dim); color: var(--ink); }
+</style>
+</head>
+<body>
+
+<div id="load-error">
+  Couldn't load <code>content.md</code>. If you're previewing this file directly from disk (file://), browsers block that fetch — serve it locally instead, e.g. <code>python3 -m http.server</code>, then open <code>http://localhost:8000</code>. It will work as-is once published on GitHub Pages.
+</div>
+
+<div class="shell" id="app" style="display:none">
+  <nav class="rail" aria-label="Section navigation">
+    <div class="rail-top">
+      <div class="rail-id mono">~/sergei</div>
+      <ul class="rail-links" id="rail-links-desktop"></ul>
+    </div>
+    <ul class="rail-links" id="rail-links-mobile"></ul>
+    <div class="rail-bottom" id="rail-loc"></div>
+  </nav>
+
+  <main>
+    <section class="hero" id="top">
+      <div class="term mono">
+        <span class="prompt" id="term-user"></span><span class="cmd">:~$ whoami</span><br>
+        <span class="out" id="whoami-out"></span><span class="cursor" id="cursor"></span>
+      </div>
+      <h1 id="hero-name"></h1>
+      <p class="role" id="hero-role"></p>
+      <div class="badges" id="hero-badges"></div>
+      <div class="hero-links" id="hero-links"></div>
+    </section>
+
+    <div id="sections"></div>
+  </main>
+</div>
+
+<footer id="contact" style="display:none">
+  <div class="rule"></div>
+  <p class="eyebrow">contact --looking-for</p>
+  <h2>What I'm looking for</h2>
+  <div id="footer-contact-body"></div>
+  <div class="contact-row" id="footer-links"></div>
+  <p class="loc" id="footer-loc"></p>
+</footer>
+
+<script>
+const ICONS = {
+  github: '<svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>',
+  linkedin: '<svg viewBox="0 0 16 16" fill="currentColor"><path d="M13.2 0H2.8C1.25 0 0 1.25 0 2.8v10.4C0 14.75 1.25 16 2.8 16h10.4c1.55 0 2.8-1.25 2.8-2.8V2.8C16 1.25 14.75 0 13.2 0ZM4.9 13.4H2.5V6h2.4v7.4ZM3.7 5c-.77 0-1.4-.63-1.4-1.4C2.3 2.83 2.93 2.2 3.7 2.2c.77 0 1.4.63 1.4 1.4 0 .77-.63 1.4-1.4 1.4Zm9.8 8.4h-2.4V9.8c0-.86-.02-1.97-1.2-1.97-1.2 0-1.38.94-1.38 1.9v3.67H6.1V6h2.3v1.01h.03c.32-.6 1.1-1.23 2.27-1.23 2.43 0 2.8 1.6 2.8 3.68v3.94Z"/></svg>',
+  email: '<svg viewBox="0 0 16 16" fill="currentColor"><path d="M1 4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V4Zm1.2.2L8 8.8l5.8-4.6H2.2ZM14 5.4 8.3 9.9a.5.5 0 0 1-.6 0L2 5.4V12h12V5.4Z"/></svg>'
+};
+
+const SECTION_META = {
+  'expertise':  { nav: 'expertise',  cmd: 'core-expertise --calypso' },
+  'risk':       { nav: 'risk',       cmd: 'risk --regulatory' },
+  'technical':  { nav: 'technical',  cmd: 'technical --depth' },
+  'projects':   { nav: 'projects',   cmd: 'ls ~/projects' },
+  'ai-quantum': { nav: 'ai-quantum', cmd: 'ai-quantum --practitioner' },
+  'leadership': { nav: 'leadership', cmd: 'how --i-work' }
+};
+
+const CIRCUIT_PATTERNS = [
+  [[90,'brass','H'],[420,'teal','X'],[760,'brass','M']],
+  [[220,'teal','Z'],[600,'brass','H']],
+  [[150,'brass','Y'],[500,'teal','X'],[830,'brass','M']],
+  [[340,'teal','H'],[700,'brass','Z']],
+  [[120,'brass','X'],[460,'teal','H'],[790,'brass','Y']],
+  [[260,'teal','Z'],[640,'brass','H']]
+];
+
+function escapeHtml(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function circuitSvg(pattern) {
+  const gates = pattern.map(([x, cls, label]) =>
+    `<rect class="gate-${cls}" x="${x}" y="4" width="20" height="20" rx="2"></rect><text x="${x+10}" y="17" text-anchor="middle">${label}</text>`
+  ).join('');
+  return `<div class="circuit" aria-hidden="true"><svg viewBox="0 0 900 28" preserveAspectRatio="none"><line x1="0" y1="14" x2="900" y2="14"></line>${gates}</svg></div>`;
+}
+
+function parseFrontmatter(text) {
+  const m = text.match(/^---\n([\s\S]*?)\n---\n?/);
+  if (!m) return { fm: {}, body: text };
+  const fm = {};
+  m[1].split('\n').forEach(line => {
+    if (!line.trim()) return;
+    const i = line.indexOf(':');
+    if (i === -1) return;
+    fm[line.slice(0, i).trim()] = line.slice(i + 1).trim();
+  });
+  return { fm, body: text.slice(m[0].length) };
+}
+
+function parseSections(body) {
+  const lines = body.split('\n');
+  const sections = [];
+  let current = null;
+  lines.forEach(line => {
+    const h = line.match(/^##\s+(.+?)\s*\{#([\w-]+)\}\s*$/);
+    if (h) {
+      if (current) sections.push(current);
+      current = { id: h[2], title: h[1], lines: [] };
+    } else if (current) {
+      current.lines.push(line);
+    }
+  });
+  if (current) sections.push(current);
+  return sections.map(s => ({ id: s.id, title: s.title, body: s.lines.join('\n').trim() }));
+}
+
+function parseTechnical(body) {
+  const idx = body.search(/^###\s+/m);
+  const intro = idx === -1 ? body : body.slice(0, idx).trim();
+  const rest = idx === -1 ? '' : body.slice(idx);
+  const parts = rest.split(/^###\s+(.+)$/m);
+  const groups = [];
+  for (let i = 1; i < parts.length; i += 2) {
+    groups.push({ title: parts[i].trim(), items: parts[i + 1].trim() });
+  }
+  return { intro, groups };
+}
+
+function parseProjects(body) {
+  const re = /```project\n([\s\S]*?)\n```\n?([\s\S]*?)(?=```project|$)/g;
+  const cards = [];
+  let m;
+  while ((m = re.exec(body))) {
+    const meta = {};
+    m[1].split('\n').forEach(line => {
+      if (!line.trim()) return;
+      const i = line.indexOf(':');
+      if (i === -1) return;
+      meta[line.slice(0, i).trim()] = line.slice(i + 1).trim();
+    });
+    cards.push({ meta, desc: m[2].trim() });
+  }
+  return cards;
+}
+
+function renderGeneric(body) {
+  const html = marked.parse(body).replace(/<ul>/g, '<ul class="dash">');
+  return `<div class="block">${html}</div>`;
+}
+
+function renderTechnical(body) {
+  const { intro, groups } = parseTechnical(body);
+  const cols = groups.map(g => `
+    <div>
+      <h3>${escapeHtml(g.title)}</h3>
+      <div class="items">${g.items.split('|').map(s => escapeHtml(s.trim())).join('<br>')}</div>
+    </div>`).join('');
+  return `<p class="dim" style="margin-bottom:1.8rem">${marked.parseInline(intro)}</p><div class="toolgrid">${cols}</div>`;
+}
+
+function renderProjects(body) {
+  const cards = parseProjects(body).map(({ meta, desc }) => {
+    const tagClass = meta.tag && meta.tag.toLowerCase() === 'public' ? '' : ' private';
+    const tags = (meta.tags || '').split(',').map(t => `<span>${escapeHtml(t.trim())}</span>`).join('');
+    const link = meta.link ? `<a class="card-link" href="${escapeHtml(meta.link)}" target="_blank" rel="noopener">${escapeHtml(meta.linktext || meta.link)} →</a>` : '';
+    return `<div class="card">
+      <div class="card-head">
+        <h3>${escapeHtml(meta.name || '')}</h3>
+        <span class="card-tag${tagClass}">${escapeHtml(meta.tag || '')}</span>
+      </div>
+      ${marked.parse(desc)}
+      <div class="tags">${tags}</div>
+      ${link}
+    </div>`;
+  }).join('');
+  return `<div class="projects">${cards}</div>`;
+}
+
+async function init() {
+  let text;
+  try {
+    const res = await fetch('content.md');
+    if (!res.ok) throw new Error('fetch failed');
+    text = await res.text();
+  } catch (e) {
+    document.getElementById('load-error').style.display = 'block';
+    return;
+  }
+
+  const { fm, body } = parseFrontmatter(text);
+  const sections = parseSections(body);
+  const byId = Object.fromEntries(sections.map(s => [s.id, s]));
+
+  // Hero
+  document.getElementById('term-user').textContent = 'sergei@markets';
+  document.getElementById('whoami-out').dataset.text = fm.whoami || '';
+  document.getElementById('hero-name').textContent = fm.name || '';
+  document.getElementById('hero-role').textContent = fm.role || '';
+  document.getElementById('hero-badges').innerHTML = (fm.badges || '').split('|')
+    .map(b => `<span class="badge">${escapeHtml(b.trim())}</span>`).join('');
+
+  const heroLinks = [];
+  if (fm.github) heroLinks.push(`<a href="${escapeHtml(fm.github)}" target="_blank" rel="noopener">${ICONS.github}${fm.github.replace(/^https?:\/\//, '')}</a>`);
+  if (fm.email) heroLinks.push(`<a href="mailto:${escapeHtml(fm.email)}">${ICONS.email}email</a>`);
+  document.getElementById('hero-links').innerHTML = heroLinks.join('');
+
+  // Nav rail
+  const navIds = Object.keys(SECTION_META).filter(id => byId[id]);
+  const navHtml = navIds.map(id => `<li><a href="#${id}">${SECTION_META[id].nav}</a></li>`).join('') + '<li><a href="#contact">contact</a></li>';
+  document.getElementById('rail-links-desktop').innerHTML = navHtml;
+  document.getElementById('rail-links-mobile').innerHTML = navHtml;
+  document.getElementById('rail-loc').innerHTML = (fm.location || '').replace(' · ', '<br>');
+
+  // Body sections, with circuit dividers between each
+  const container = document.getElementById('sections');
+  let out = circuitSvg(CIRCUIT_PATTERNS[0]);
+  navIds.forEach((id, i) => {
+    const sec = byId[id];
+    const meta = SECTION_META[id];
+    let inner;
+    if (id === 'technical') inner = renderTechnical(sec.body);
+    else if (id === 'projects') inner = renderProjects(sec.body);
+    else inner = renderGeneric(sec.body);
+    out += `<section id="${id}"><p class="eyebrow">${escapeHtml(meta.cmd)}</p><h2>${escapeHtml(sec.title)}</h2>${inner}</section>`;
+    if (i < navIds.length - 1) out += circuitSvg(CIRCUIT_PATTERNS[(i + 1) % CIRCUIT_PATTERNS.length]);
+  });
+  container.innerHTML = out;
+
+  // Footer / contact
+  if (byId['contact']) {
+    document.getElementById('footer-contact-body').innerHTML = marked.parse(byId['contact'].body);
+  }
+  const footerLinks = [];
+  if (fm.github) footerLinks.push(`<a href="${escapeHtml(fm.github)}" target="_blank" rel="noopener">${ICONS.github}${fm.github.replace(/^https?:\/\//, '')}</a>`);
+  if (fm.linkedin) footerLinks.push(`<a href="${escapeHtml(fm.linkedin)}" target="_blank" rel="noopener">${ICONS.linkedin}linkedin</a>`);
+  if (fm.email) footerLinks.push(`<a href="mailto:${escapeHtml(fm.email)}">${ICONS.email}email</a>`);
+  document.getElementById('footer-links').innerHTML = footerLinks.join('');
+  document.getElementById('footer-loc').textContent = fm.location || '';
+  document.getElementById('contact').style.display = 'block';
+
+  document.getElementById('app').style.display = '';
+
+  // Typewriter for whoami line, respecting reduced motion
+  const out2 = document.getElementById('whoami-out');
+  const cursor = document.getElementById('cursor');
+  const text2 = out2.dataset.text || '';
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduced) {
+    out2.textContent = text2;
+  } else {
+    let i = 0;
+    (function tick() {
+      if (i <= text2.length) {
+        out2.textContent = text2.slice(0, i);
+        i++;
+        setTimeout(tick, 22);
+      }
+    })();
+  }
+}
+
+init();
+</script>
+
+</body>
+</html>

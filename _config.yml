@@ -1,4 +1,0 @@
-# theme: jekyll-theme-minimal
-plugins:
-  - jekyll-remote-theme
-remote_theme: jekyll/minima@4de322363fca5927e6f4012cb94f6dad69ab5e6c
