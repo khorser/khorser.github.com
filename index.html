@@ -8,7 +8,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <style>
   :root {
     --ink: #14171b;
@@ -152,265 +151,45 @@
   footer .contact-row { margin-top: 1.6rem; }
   footer .loc { font-family: var(--mono); font-size: 0.78rem; color: var(--paper-dimmer); margin-top: 2.2rem; }
 
-  #load-error { max-width: var(--maxw); margin: 4rem auto; padding: 1.5rem; border: 1px solid var(--rule); border-radius: 8px; font-family: var(--mono); font-size: 0.85rem; color: var(--paper-dim); display: none; }
-
   ::selection { background: var(--brass-dim); color: var(--ink); }
 </style>
 </head>
 <body>
 
-<div id="load-error">
-  Couldn't load <code>content.md</code>. If you're previewing this file directly from disk (file://), browsers block that fetch — serve it locally instead, e.g. <code>python3 -m http.server</code>, then open <code>http://localhost:8000</code>. It will work as-is once published on GitHub Pages.
-</div>
-
-<div class="shell" id="app" style="display:none">
+<div class="shell">
   <nav class="rail" aria-label="Section navigation">
     <div class="rail-top">
-      <div class="rail-id mono">~/sergei</div>
-      <ul class="rail-links" id="rail-links-desktop"></ul>
+      <div class="rail-id mono">~/sergei khorev</div>
+      <ul class="rail-links"><li><a href="#expertise">expertise</a></li><li><a href="#risk">risk</a></li><li><a href="#technical">technical</a></li><li><a href="#projects">projects</a></li><li><a href="#ai-quantum">ai-quantum</a></li><li><a href="#leadership">leadership</a></li><li><a href="#contact">contact</a></li></ul>
     </div>
-    <ul class="rail-links" id="rail-links-mobile"></ul>
-    <div class="rail-bottom" id="rail-loc"></div>
+    <ul class="rail-links"><li><a href="#expertise">expertise</a></li><li><a href="#risk">risk</a></li><li><a href="#technical">technical</a></li><li><a href="#projects">projects</a></li><li><a href="#ai-quantum">ai-quantum</a></li><li><a href="#leadership">leadership</a></li><li><a href="#contact">contact</a></li></ul>
+    <div class="rail-bottom">Serbia<br>remote or hybrid</div>
   </nav>
 
   <main>
     <section class="hero" id="top">
       <div class="term mono">
-        <span class="prompt" id="term-user"></span><span class="cmd">:~$ whoami</span><br>
-        <span class="out" id="whoami-out"></span><span class="cursor" id="cursor"></span>
+        <span class="prompt">sergei@markets</span><span class="cmd">:~$ whoami</span><br>
+        <span class="out">capital-markets technologist / physicist — pricing engines to quantum circuits</span><span class="cursor" aria-hidden="true"></span>
       </div>
-      <h1 id="hero-name"></h1>
-      <p class="role" id="hero-role"></p>
-      <div class="badges" id="hero-badges"></div>
-      <div class="hero-links" id="hero-links"></div>
+      <h1>Sergei Khorev</h1>
+      <p class="role">Capital markets technologist — physicist by training. Twenty-plus years moving between pricing engines, risk systems, and the odd compiler bug, with a quantum computing habit that keeps growing modules.</p>
+      <div class="badges"><span class="badge">Calypso · FO / BO / Technical certified</span><span class="badge">Basics of Quantum Information</span><span class="badge">Fundamentals of Quantum Algorithms</span><span class="badge">MSc Hons, Theoretical Physics</span><span class="badge">20+ years</span><span class="badge">CSPO (lapsed)</span></div>
+      <div class="hero-links"><a href="https://github.com/khorser" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>github.com/khorser</a><a href="mailto:sergey.khorev@gmail.com"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M1 4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V4Zm1.2.2L8 8.8l5.8-4.6H2.2ZM14 5.4 8.3 9.9a.5.5 0 0 1-.6 0L2 5.4V12h12V5.4Z"/></svg>email</a></div>
     </section>
 
-    <div id="sections"></div>
+    <div class="circuit" aria-hidden="true"><svg viewBox="0 0 900 28" preserveAspectRatio="none"><line x1="0" y1="14" x2="900" y2="14"></line><rect class="gate-brass" x="90" y="4" width="20" height="20" rx="2"></rect><text x="100" y="17" text-anchor="middle">H</text><rect class="gate-teal" x="420" y="4" width="20" height="20" rx="2"></rect><text x="430" y="17" text-anchor="middle">X</text><rect class="gate-brass" x="760" y="4" width="20" height="20" rx="2"></rect><text x="770" y="17" text-anchor="middle">M</text></svg></div><section id="expertise"><p class="eyebrow">core-expertise --calypso</p><h2>Core Expertise: Calypso &amp; Capital Markets Risk</h2><div class="block"><p>Certified across all three Calypso tracks — Front Office, Back Office, Technical. Principal-level implementation consultant delivering greenfield deployments, upgrades, and reconfigurations for banks and hedge funds globally.</p><ul class="dash"><li>Deep hands-on work in trade pricing, P&amp;L, market risk, VaR, and xVA/CVA.</li><li>Independent CVA validation: built a Python/pandas/QuantLib tool from scratch that surfaced a discrepancy no client-side review had caught.</li><li>Also worked with Murex MX.3, Kondor+, NumeriX, and Scila Risk — enough exposure to know where Calypso's model assumptions diverge from the rest of the field.</li></ul></div></section><div class="circuit" aria-hidden="true"><svg viewBox="0 0 900 28" preserveAspectRatio="none"><line x1="0" y1="14" x2="900" y2="14"></line><rect class="gate-teal" x="220" y="4" width="20" height="20" rx="2"></rect><text x="230" y="17" text-anchor="middle">Z</text><rect class="gate-brass" x="600" y="4" width="20" height="20" rx="2"></rect><text x="610" y="17" text-anchor="middle">H</text></svg></div><section id="risk"><p class="eyebrow">risk --regulatory</p><h2>Risk Management &amp; Regulatory</h2><div class="block"><p>Led Basel II/III credit risk and regulatory market risk implementations — CEM, S-CVA, RWA — as risk system owner at a major sell-side bank. Delivered limits management, P&amp;L control, and VaR frameworks as risk management product owner for a trading firm moving from crypto-only into traditional markets.</p><p>Worked directly with CROs and trading desks to turn risk requirements into working systems — the translation layer between what a regulator asks for and what a system can actually compute.</p></div></section><div class="circuit" aria-hidden="true"><svg viewBox="0 0 900 28" preserveAspectRatio="none"><line x1="0" y1="14" x2="900" y2="14"></line><rect class="gate-brass" x="150" y="4" width="20" height="20" rx="2"></rect><text x="160" y="17" text-anchor="middle">Y</text><rect class="gate-teal" x="500" y="4" width="20" height="20" rx="2"></rect><text x="510" y="17" text-anchor="middle">X</text><rect class="gate-brass" x="830" y="4" width="20" height="20" rx="2"></rect><text x="840" y="17" text-anchor="middle">M</text></svg></div><section id="technical"><p class="eyebrow">technical --depth</p><h2>Technical Depth</h2><p class="dim" style="margin-bottom:1.8rem">Twenty-plus years of commercial development — deeper than a typical consultant's toolkit. Comfortable reading a system's source when there isn't a spec, and comfortable when there isn't source either.</p><div class="toolgrid"><div><h3>Languages</h3><div class="items">C++<br>Java<br>Python — pandas, NumPy, QuantLib<br>Rust<br>Haskell<br>PL/SQL<br>Scheme/Lisp<br>Prolog<br>Perl<br>Lua<br>VBA</div></div><div><h3>Databases</h3><div class="items">Oracle<br>MS SQL<br>Sybase<br>PostgreSQL</div></div><div><h3>Platforms</h3><div class="items">Linux &amp; Unix-likes (FreeBSD, Solaris)<br>macOS<br>Windows/Cygwin</div></div><div><h3>Low-level</h3><div class="items">Memory debugging<br>Compiler bugs<br>OS internals<br>Java decompilation &amp; reverse engineering without source access</div></div></div></section><div class="circuit" aria-hidden="true"><svg viewBox="0 0 900 28" preserveAspectRatio="none"><line x1="0" y1="14" x2="900" y2="14"></line><rect class="gate-teal" x="340" y="4" width="20" height="20" rx="2"></rect><text x="350" y="17" text-anchor="middle">H</text><rect class="gate-brass" x="700" y="4" width="20" height="20" rx="2"></rect><text x="710" y="17" text-anchor="middle">Z</text></svg></div><section id="projects"><p class="eyebrow">ls ~/projects</p><h2>Projects</h2><div class="projects"><div class="card"><div class="card-head"><h3>qstudy — Qiskit study toolkit</h3><span class="card-tag">public</span></div><p>A portfolio of interconnected Python modules for studying quantum algorithms from the inside out. Built around <strong>CircuitSlicer</strong>, a barrier-delimited circuit inspection tool that shows statevectors, density matrices, purity, entanglement, and unitaries at every slice — plus implementations of Deutsch-Jozsa, Bernstein-Vazirani, Simon's algorithm (with GF(2) postprocessing), and Grover's with geometric visualization.</p><p>Extended with seven modules layered on top without modifying the core: resource estimation, grounded local-LLM narration, an AI-enhanced widget subclass, a duck-typed Ollama adapter, a headless simulation path, and a multi-step tool-use agent for circuit analysis.</p><div class="tags"><span>Qiskit</span><span>Python</span><span>Ollama</span><span>qwen2.5</span></div><a class="card-link" href="https://github.com/khorser/qstudy" target="_blank" rel="noopener">github.com/khorser/qstudy →</a></div><div class="card"><div class="card-head"><h3>hasquant</h3><span class="card-tag">public</span></div><p>A Haskell/C++ FFI binding to QuantLib. Conceptual architecture is mine; boilerplate FFI generation is delegated to an AI coding agent (Aider, running against a local Ollama model) working inside that architecture rather than improvising its own.</p><div class="tags"><span>Haskell</span><span>C++</span><span>FFI</span><span>QuantLib</span></div><a class="card-link" href="https://github.com/khorser/hasquant" target="_blank" rel="noopener">github.com/khorser/hasquant →</a></div><div class="card"><div class="card-head"><h3>Local semantic search agent</h3><span class="card-tag private">private</span></div><p>A retrieval agent over a large vendor documentation corpus, running entirely locally: SQLite FTS5 for lexical search combined with <code>nomic-embed-text</code> embeddings for semantic matching.</p><div class="tags"><span>SQLite FTS5</span><span>Embeddings</span><span>Ollama</span></div></div><div class="card"><div class="card-head"><h3>Serbian pronunciation trainer</h3><span class="card-tag private">side project</span></div><p>A local language-practice loop built from parts that were never meant to work together: <code>whisper.cpp</code> for speech recognition, Ollama for feedback, and Piper TTS for spoken correction.</p><div class="tags"><span>whisper.cpp</span><span>Piper TTS</span><span>Ollama</span></div></div></div></section><div class="circuit" aria-hidden="true"><svg viewBox="0 0 900 28" preserveAspectRatio="none"><line x1="0" y1="14" x2="900" y2="14"></line><rect class="gate-brass" x="120" y="4" width="20" height="20" rx="2"></rect><text x="130" y="17" text-anchor="middle">X</text><rect class="gate-teal" x="460" y="4" width="20" height="20" rx="2"></rect><text x="470" y="17" text-anchor="middle">H</text><rect class="gate-brass" x="790" y="4" width="20" height="20" rx="2"></rect><text x="800" y="17" text-anchor="middle">Y</text></svg></div><section id="ai-quantum"><p class="eyebrow">ai-quantum --practitioner</p><h2>AI &amp; Quantum Computing</h2><div class="block"><p>Quantum computing is a side interest with the same habit behind it as everything else here: go deep on an unfamiliar domain until it's possible to build with it, not just talk about it.</p><ul class="dash"><li>Practical judgment on when an agentic workflow earns its complexity, versus when a deterministic script or plain code does the job better.</li><li>Explicit choices about which local models are trustworthy for grounded, non-reasoning narration tasks versus which are worth reserving for agentic planning.</li><li>Comfortable at every layer of a local AI stack: model choice, embeddings, retrieval, tool-calling agents, TTS/STT pipelines — not just the prompt.</li></ul></div></section><div class="circuit" aria-hidden="true"><svg viewBox="0 0 900 28" preserveAspectRatio="none"><line x1="0" y1="14" x2="900" y2="14"></line><rect class="gate-teal" x="260" y="4" width="20" height="20" rx="2"></rect><text x="270" y="17" text-anchor="middle">Z</text><rect class="gate-brass" x="640" y="4" width="20" height="20" rx="2"></rect><text x="650" y="17" text-anchor="middle">H</text></svg></div><section id="leadership"><p class="eyebrow">how --i-work</p><h2>Delivery &amp; Leadership</h2><div class="block"><p>I can read code even when I'm not the one shipping it — it's the fastest way to know what a system can actually do, independent of what anyone says it does. Sole functional analyst on some projects, mentored developers and analysts on others, ran internal knowledge bases, and acted as client advocate in vendor relationships when the vendor and the client stopped speaking the same language.</p><p>CSPO (lapsed), fluent with Jira/Confluence, and comfortable running with distributed teams across time zones.</p></div></section>
   </main>
 </div>
 
-<footer id="contact" style="display:none">
+<footer id="contact">
   <div class="rule"></div>
   <p class="eyebrow">contact --looking-for</p>
   <h2>What I'm looking for</h2>
-  <div id="footer-contact-body"></div>
-  <div class="contact-row" id="footer-links"></div>
-  <p class="loc" id="footer-loc"></p>
+  <p>Remote or hybrid capital markets tech roles — Calypso implementation, risk system ownership, xVA/CVA, front-to-back trading system integration, or roles at the intersection of quantitative finance and AI/quantum computing.</p>
+  <div class="contact-row"><a href="https://github.com/khorser" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>github.com/khorser</a><a href="https://www.linkedin.com/in/sergeykhorev/" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M13.2 0H2.8C1.25 0 0 1.25 0 2.8v10.4C0 14.75 1.25 16 2.8 16h10.4c1.55 0 2.8-1.25 2.8-2.8V2.8C16 1.25 14.75 0 13.2 0ZM4.9 13.4H2.5V6h2.4v7.4ZM3.7 5c-.77 0-1.4-.63-1.4-1.4C2.3 2.83 2.93 2.2 3.7 2.2c.77 0 1.4.63 1.4 1.4 0 .77-.63 1.4-1.4 1.4Zm9.8 8.4h-2.4V9.8c0-.86-.02-1.97-1.2-1.97-1.2 0-1.38.94-1.38 1.9v3.67H6.1V6h2.3v1.01h.03c.32-.6 1.1-1.23 2.27-1.23 2.43 0 2.8 1.6 2.8 3.68v3.94Z"/></svg>linkedin</a><a href="mailto:sergey.khorev@gmail.com"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M1 4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V4Zm1.2.2L8 8.8l5.8-4.6H2.2ZM14 5.4 8.3 9.9a.5.5 0 0 1-.6 0L2 5.4V12h12V5.4Z"/></svg>email</a></div>
+  <p class="loc">Serbia · remote or hybrid</p>
 </footer>
-
-<script>
-const ICONS = {
-  github: '<svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>',
-  linkedin: '<svg viewBox="0 0 16 16" fill="currentColor"><path d="M13.2 0H2.8C1.25 0 0 1.25 0 2.8v10.4C0 14.75 1.25 16 2.8 16h10.4c1.55 0 2.8-1.25 2.8-2.8V2.8C16 1.25 14.75 0 13.2 0ZM4.9 13.4H2.5V6h2.4v7.4ZM3.7 5c-.77 0-1.4-.63-1.4-1.4C2.3 2.83 2.93 2.2 3.7 2.2c.77 0 1.4.63 1.4 1.4 0 .77-.63 1.4-1.4 1.4Zm9.8 8.4h-2.4V9.8c0-.86-.02-1.97-1.2-1.97-1.2 0-1.38.94-1.38 1.9v3.67H6.1V6h2.3v1.01h.03c.32-.6 1.1-1.23 2.27-1.23 2.43 0 2.8 1.6 2.8 3.68v3.94Z"/></svg>',
-  email: '<svg viewBox="0 0 16 16" fill="currentColor"><path d="M1 4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V4Zm1.2.2L8 8.8l5.8-4.6H2.2ZM14 5.4 8.3 9.9a.5.5 0 0 1-.6 0L2 5.4V12h12V5.4Z"/></svg>'
-};
-
-const SECTION_META = {
-  'expertise':  { nav: 'expertise',  cmd: 'core-expertise --calypso' },
-  'risk':       { nav: 'risk',       cmd: 'risk --regulatory' },
-  'technical':  { nav: 'technical',  cmd: 'technical --depth' },
-  'projects':   { nav: 'projects',   cmd: 'ls ~/projects' },
-  'ai-quantum': { nav: 'ai-quantum', cmd: 'ai-quantum --practitioner' },
-  'leadership': { nav: 'leadership', cmd: 'how --i-work' }
-};
-
-const CIRCUIT_PATTERNS = [
-  [[90,'brass','H'],[420,'teal','X'],[760,'brass','M']],
-  [[220,'teal','Z'],[600,'brass','H']],
-  [[150,'brass','Y'],[500,'teal','X'],[830,'brass','M']],
-  [[340,'teal','H'],[700,'brass','Z']],
-  [[120,'brass','X'],[460,'teal','H'],[790,'brass','Y']],
-  [[260,'teal','Z'],[640,'brass','H']]
-];
-
-function escapeHtml(s) {
-  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-}
-
-function circuitSvg(pattern) {
-  const gates = pattern.map(([x, cls, label]) =>
-    `<rect class="gate-${cls}" x="${x}" y="4" width="20" height="20" rx="2"></rect><text x="${x+10}" y="17" text-anchor="middle">${label}</text>`
-  ).join('');
-  return `<div class="circuit" aria-hidden="true"><svg viewBox="0 0 900 28" preserveAspectRatio="none"><line x1="0" y1="14" x2="900" y2="14"></line>${gates}</svg></div>`;
-}
-
-function parseFrontmatter(text) {
-  const m = text.match(/^---\n([\s\S]*?)\n---\n?/);
-  if (!m) return { fm: {}, body: text };
-  const fm = {};
-  m[1].split('\n').forEach(line => {
-    if (!line.trim()) return;
-    const i = line.indexOf(':');
-    if (i === -1) return;
-    fm[line.slice(0, i).trim()] = line.slice(i + 1).trim();
-  });
-  return { fm, body: text.slice(m[0].length) };
-}
-
-function parseSections(body) {
-  const lines = body.split('\n');
-  const sections = [];
-  let current = null;
-  lines.forEach(line => {
-    const h = line.match(/^##\s+(.+?)\s*\{#([\w-]+)\}\s*$/);
-    if (h) {
-      if (current) sections.push(current);
-      current = { id: h[2], title: h[1], lines: [] };
-    } else if (current) {
-      current.lines.push(line);
-    }
-  });
-  if (current) sections.push(current);
-  return sections.map(s => ({ id: s.id, title: s.title, body: s.lines.join('\n').trim() }));
-}
-
-function parseTechnical(body) {
-  const idx = body.search(/^###\s+/m);
-  const intro = idx === -1 ? body : body.slice(0, idx).trim();
-  const rest = idx === -1 ? '' : body.slice(idx);
-  const parts = rest.split(/^###\s+(.+)$/m);
-  const groups = [];
-  for (let i = 1; i < parts.length; i += 2) {
-    groups.push({ title: parts[i].trim(), items: parts[i + 1].trim() });
-  }
-  return { intro, groups };
-}
-
-function parseProjects(body) {
-  const re = /```project\n([\s\S]*?)\n```\n?([\s\S]*?)(?=```project|$)/g;
-  const cards = [];
-  let m;
-  while ((m = re.exec(body))) {
-    const meta = {};
-    m[1].split('\n').forEach(line => {
-      if (!line.trim()) return;
-      const i = line.indexOf(':');
-      if (i === -1) return;
-      meta[line.slice(0, i).trim()] = line.slice(i + 1).trim();
-    });
-    cards.push({ meta, desc: m[2].trim() });
-  }
-  return cards;
-}
-
-function renderGeneric(body) {
-  const html = marked.parse(body).replace(/<ul>/g, '<ul class="dash">');
-  return `<div class="block">${html}</div>`;
-}
-
-function renderTechnical(body) {
-  const { intro, groups } = parseTechnical(body);
-  const cols = groups.map(g => `
-    <div>
-      <h3>${escapeHtml(g.title)}</h3>
-      <div class="items">${g.items.split('|').map(s => escapeHtml(s.trim())).join('<br>')}</div>
-    </div>`).join('');
-  return `<p class="dim" style="margin-bottom:1.8rem">${marked.parseInline(intro)}</p><div class="toolgrid">${cols}</div>`;
-}
-
-function renderProjects(body) {
-  const cards = parseProjects(body).map(({ meta, desc }) => {
-    const tagClass = meta.tag && meta.tag.toLowerCase() === 'public' ? '' : ' private';
-    const tags = (meta.tags || '').split(',').map(t => `<span>${escapeHtml(t.trim())}</span>`).join('');
-    const link = meta.link ? `<a class="card-link" href="${escapeHtml(meta.link)}" target="_blank" rel="noopener">${escapeHtml(meta.linktext || meta.link)} →</a>` : '';
-    return `<div class="card">
-      <div class="card-head">
-        <h3>${escapeHtml(meta.name || '')}</h3>
-        <span class="card-tag${tagClass}">${escapeHtml(meta.tag || '')}</span>
-      </div>
-      ${marked.parse(desc)}
-      <div class="tags">${tags}</div>
-      ${link}
-    </div>`;
-  }).join('');
-  return `<div class="projects">${cards}</div>`;
-}
-
-async function init() {
-  let text;
-  try {
-    const res = await fetch('content.md');
-    if (!res.ok) throw new Error('fetch failed');
-    text = await res.text();
-  } catch (e) {
-    document.getElementById('load-error').style.display = 'block';
-    return;
-  }
-
-  const { fm, body } = parseFrontmatter(text);
-  const sections = parseSections(body);
-  const byId = Object.fromEntries(sections.map(s => [s.id, s]));
-
-  // Hero
-  document.getElementById('term-user').textContent = 'sergei@markets';
-  document.getElementById('whoami-out').dataset.text = fm.whoami || '';
-  document.getElementById('hero-name').textContent = fm.name || '';
-  document.getElementById('hero-role').textContent = fm.role || '';
-  document.getElementById('hero-badges').innerHTML = (fm.badges || '').split('|')
-    .map(b => `<span class="badge">${escapeHtml(b.trim())}</span>`).join('');
-
-  const heroLinks = [];
-  if (fm.github) heroLinks.push(`<a href="${escapeHtml(fm.github)}" target="_blank" rel="noopener">${ICONS.github}${fm.github.replace(/^https?:\/\//, '')}</a>`);
-  if (fm.email) heroLinks.push(`<a href="mailto:${escapeHtml(fm.email)}">${ICONS.email}email</a>`);
-  document.getElementById('hero-links').innerHTML = heroLinks.join('');
-
-  // Nav rail
-  const navIds = Object.keys(SECTION_META).filter(id => byId[id]);
-  const navHtml = navIds.map(id => `<li><a href="#${id}">${SECTION_META[id].nav}</a></li>`).join('') + '<li><a href="#contact">contact</a></li>';
-  document.getElementById('rail-links-desktop').innerHTML = navHtml;
-  document.getElementById('rail-links-mobile').innerHTML = navHtml;
-  document.getElementById('rail-loc').innerHTML = (fm.location || '').replace(' · ', '<br>');
-
-  // Body sections, with circuit dividers between each
-  const container = document.getElementById('sections');
-  let out = circuitSvg(CIRCUIT_PATTERNS[0]);
-  navIds.forEach((id, i) => {
-    const sec = byId[id];
-    const meta = SECTION_META[id];
-    let inner;
-    if (id === 'technical') inner = renderTechnical(sec.body);
-    else if (id === 'projects') inner = renderProjects(sec.body);
-    else inner = renderGeneric(sec.body);
-    out += `<section id="${id}"><p class="eyebrow">${escapeHtml(meta.cmd)}</p><h2>${escapeHtml(sec.title)}</h2>${inner}</section>`;
-    if (i < navIds.length - 1) out += circuitSvg(CIRCUIT_PATTERNS[(i + 1) % CIRCUIT_PATTERNS.length]);
-  });
-  container.innerHTML = out;
-
-  // Footer / contact
-  if (byId['contact']) {
-    document.getElementById('footer-contact-body').innerHTML = marked.parse(byId['contact'].body);
-  }
-  const footerLinks = [];
-  if (fm.github) footerLinks.push(`<a href="${escapeHtml(fm.github)}" target="_blank" rel="noopener">${ICONS.github}${fm.github.replace(/^https?:\/\//, '')}</a>`);
-  if (fm.linkedin) footerLinks.push(`<a href="${escapeHtml(fm.linkedin)}" target="_blank" rel="noopener">${ICONS.linkedin}linkedin</a>`);
-  if (fm.email) footerLinks.push(`<a href="mailto:${escapeHtml(fm.email)}">${ICONS.email}email</a>`);
-  document.getElementById('footer-links').innerHTML = footerLinks.join('');
-  document.getElementById('footer-loc').textContent = fm.location || '';
-  document.getElementById('contact').style.display = 'block';
-
-  document.getElementById('app').style.display = '';
-
-  // Typewriter for whoami line, respecting reduced motion
-  const out2 = document.getElementById('whoami-out');
-  const cursor = document.getElementById('cursor');
-  const text2 = out2.dataset.text || '';
-  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reduced) {
-    out2.textContent = text2;
-  } else {
-    let i = 0;
-    (function tick() {
-      if (i <= text2.length) {
-        out2.textContent = text2.slice(0, i);
-        i++;
-        setTimeout(tick, 22);
-      }
-    })();
-  }
-}
-
-init();
-</script>
 
 </body>
 </html>
